@@ -37,6 +37,7 @@
             "body": [
                 {
                     "type": "alert",
+                    "id": "u:7804148bff7c",
                     "body": [
                         {
                             "type": "tpl",
@@ -45,8 +46,7 @@
                             "id": "u:f6d5a76fc187"
                         }
                     ],
-                    "level": "info",
-                    "id": "u:7804148bff7c"
+                    "level": "info"
                 },
                 {
                     "type": "form",
@@ -54,53 +54,61 @@
                     "body": [
                         {
                             "label": "邮箱",
-                            "type": "input-text",
+                            "type": "input-email",
                             "name": "email",
                             "id": "u:bae6530a2019",
-                            "required": true
+                            "required": true,
+                            "validateOnChange": true,
+                            "validations": {
+                            },
+                            "validationErrors": {
+                            }
                         },
                         {
                             "type": "radios",
                             "label": "时长",
                             "name": "time",
+                            "id": "u:e8709a8896bc",
+                            "required": true,
                             "options": [
                                 {
                                     "label": "1天",
                                     "value": 1
                                 }
                             ],
-                            "required": true,
                             "disabled": true,
-                            "value": 1,
-                            "id": "u:e8709a8896bc"
+                            "value": 1
                         },
                         {
-                            "type": "radios",
+                            "type": "list-select",
                             "label": "网速",
                             "name": "speed",
-                            "id": "u:eb54acd929b1",
                             "options": [
                                 {
                                     "label": "1元=256KB/S",
-                                    "value": 1
+                                    "value": 1,
+                                    "image": "/imgs/money1.jpeg"
                                 },
                                 {
                                     "label": "1.5元=512KB/S",
-                                    "value": 2
+                                    "value": 2,
+                                    "image": "/imgs/money1.5.jpeg"
                                 },
                                 {
                                     "label": "2元=1M/S",
-                                    "value": 3
+                                    "value": 3,
+                                    "image": "/imgs/money2.jpeg"
                                 },
                                 {
                                     "label": "3元=2M/S",
-                                    "value": 4
+                                    "value": 4,
+                                    "image": "/imgs/money3.jpeg"
                                 }
                             ],
-                            "autoFill": {
-                            },
-                            "required": true,
-                            "value": 1
+                            "id": "u:43eae2d0765a",
+                            "multiple": false,
+                            "value": 1,
+                            "inline": false
                         },
                         {
                             "type": "input-text",
