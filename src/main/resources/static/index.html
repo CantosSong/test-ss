@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <title>SS 下单页面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link rel="stylesheet" href="/sdk/sdk.css" />
+    <link rel="stylesheet" href="/sdk/helper.css" />
+    <link rel="stylesheet" href="/sdk/iconfont.css" />
+    <!-- 这是默认主题所需的，如果是其他主题则不需要 -->
+    <!-- 从 1.1.0 开始 sdk.css 将不支持 IE 11，如果要支持 IE11 请引用这个 css，并把前面那个删了 -->
+    <!-- <link rel="stylesheet" href="sdk-ie11.css" /> -->
+    <!-- 不过 amis 开发团队几乎没测试过 IE 11 下的效果，所以可能有细节功能用不了，如果发现请报 issue -->
+    <style>
+        html,
+        body,
+        .app-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="root" class="app-wrapper"></div>
+<script src="/sdk/sdk.js"></script>
+<script type="text/javascript">
+    (function () {
+        let amis = amisRequire('amis/embed');
+        // 通过替换下面这个配置来生成不同页面
+        let amisJSON = {
+            "type": "page",
+            "body": [
+                {
+                    "type": "alert",
+                    "body": [
+                        {
+                            "type": "tpl",
+                            "tpl": "<p>填写邮箱-->选择支付金额-->填写订单号-->点击提交-->等待系统后台完成-->查看邮件</p><p>温馨提示</p>\n<ol>\n<li>建议先支付，支付成功后将订单号填写完成</li>\n<li>支付后预计10分钟创建完成，请耐心等待</li>\n<li>当前只支持按天支付</li>\n<li>本站限流同一IP每天100次访问，请适当访问</li>\n<li>遇到问题<a href='https://github.com/join-net/ss/issues'>点击反馈</a></li>\n</ol>",
+                            "inline": false,
+                            "id": "u:f6d5a76fc187"
+                        }
+                    ],
+                    "level": "info",
+                    "id": "u:7804148bff7c"
+                },
+                {
+                    "type": "form",
+                    "title": "下单",
+                    "body": [
+                        {
+                            "label": "邮箱",
+                            "type": "input-text",
+                            "name": "email",
+                            "id": "u:bae6530a2019",
+                            "required": true
+                        },
+                        {
+                            "type": "radios",
+                            "label": "时长",
+                            "name": "time",
+                            "options": [
+                                {
+                                    "label": "1天",
+                                    "value": 1
+                                }
+                            ],
+                            "required": true,
+                            "disabled": true,
+                            "value": 1,
+                            "id": "u:e8709a8896bc"
+                        },
+                        {
+                            "type": "radios",
+                            "label": "网速",
+                            "name": "speed",
+                            "id": "u:eb54acd929b1",
+                            "options": [
+                                {
+                                    "label": "1元=256KB/S",
+                                    "value": 1
+                                },
+                                {
+                                    "label": "1.5元=512KB/S",
+                                    "value": 2
+                                },
+                                {
+                                    "label": "2元=1M/S",
+                                    "value": 3
+                                },
+                                {
+                                    "label": "3元=2M/S",
+                                    "value": 4
+                                }
+                            ],
+                            "autoFill": {
+                            },
+                            "required": true,
+                            "value": 1
+                        },
+                        {
+                            "type": "input-text",
+                            "label": "支付订单号",
+                            "name": "orderNo",
+                            "id": "u:be0a44748a3e",
+                            "required": true
+                        }
+                    ],
+                    "api": {
+                        "method": "get",
+                        "url": "/ss/net/submit"
+                    },
+                    "id": "u:b458e1ba0d9f",
+                    "persistData": true,
+                    "clearPersistDataAfterSubmit": true
+                }
+            ],
+            "id": "u:b91110764f22",
+            "asideResizor": false,
+            "pullRefresh": {
+                "disabled": false
+            }
+        };
+        let amisScoped = amis.embed('#root', amisJSON);
+    })();
+</script>
+</body>
+</html>
